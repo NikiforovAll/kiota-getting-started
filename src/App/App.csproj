@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <Target Name="OpenAPI" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
-      <Exec Command="kiota generate -l CSharp --output ../App.Sdk --namespace-name App.Sdk --class-name AppApiClient --exclude-backward-compatible --openapi ../App.Sdk/OpenApi/App.json" WorkingDirectory="$(ProjectDir)" />
+      <Exec Command="dotnet kiota generate -l CSharp --output ../App.Sdk --namespace-name App.Sdk --class-name AppApiClient --exclude-backward-compatible --openapi ../App.Sdk/OpenApi/App.json" WorkingDirectory="$(ProjectDir)" />
   </Target>
 
 </Project>

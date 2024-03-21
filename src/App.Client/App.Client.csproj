@@ -21,10 +21,10 @@
   </ItemGroup>
 
   <Target Name="OpenAPI" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
-      <Exec Command="kiota generate -l CSharp --output ../App.Client.Sdk --namespace-name App.Client.Sdk --class-name AppClientApiClient --exclude-backward-compatible --openapi ../App.Client.Sdk/OpenApi/App.Client.json" WorkingDirectory="$(ProjectDir)" />
+      <Exec Command="dotnet kiota generate -l CSharp --output ../App.Client.Sdk --namespace-name App.Client.Sdk --class-name AppClientApiClient --exclude-backward-compatible --openapi ../App.Client.Sdk/OpenApi/App.Client.json" WorkingDirectory="$(ProjectDir)" />
   </Target>
   <Target Name="OpenAPICli" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
-      <Exec Command="kiota generate -l CLI --output ../App.Client.Cli/Client --namespace-name App.Client.Cli --class-name AppClientCli --exclude-backward-compatible --openapi ../App.Client.Sdk/OpenApi/App.Client.json" WorkingDirectory="$(ProjectDir)" />
+      <Exec Command="dotnet kiota generate -l CLI --output ../App.Client.Cli/Client --namespace-name App.Client.Cli --class-name AppClientCli --exclude-backward-compatible --openapi ../App.Client.Sdk/OpenApi/App.Client.json" WorkingDirectory="$(ProjectDir)" />
   </Target>
 
 </Project>
