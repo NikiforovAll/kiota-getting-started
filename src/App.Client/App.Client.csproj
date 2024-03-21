@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <OpenApiDocumentsDirectory>$(MSBuildProjectDirectory)/../App.Client.Sdk/OpenApi</OpenApiDocumentsDirectory>
+    <OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
+    <OpenApiGenerateDocumentsOnBuild>true</OpenApiGenerateDocumentsOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\App.ServiceDefaults\App.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\App.Sdk\App.Sdk.csproj" />
+  </ItemGroup>
+
+  <Target Name="OpenAPI" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
+      <Exec Command="kiota generate -l CSharp --output ../App.Client.Sdk --namespace-name App.Client.Sdk --class-name AppClientApiClient --exclude-backward-compatible --openapi ../App.Client.Sdk/OpenApi/App.Client.json" WorkingDirectory="$(ProjectDir)" />
+  </Target>
+  <Target Name="OpenAPICli" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
+      <Exec Command="kiota generate -l CLI --output ../App.Client.Cli/Client --namespace-name App.Client.Cli --class-name AppClientCli --exclude-backward-compatible --openapi ../App.Client.Sdk/OpenApi/App.Client.json" WorkingDirectory="$(ProjectDir)" />
+  </Target>
+
+</Project>

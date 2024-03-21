@@ -1,0 +1,5 @@
+GET {{App_HostAddress}}/trending/US
+Accept: application/json
+###
+GET {{AppClient_HostAddress}}/my/trending
+Accept: application/json

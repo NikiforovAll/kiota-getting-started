@@ -1,0 +1,534 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "App",
+    "version": "1.0"
+  },
+  "paths": {
+    "/trending": {
+      "get": {
+        "tags": [
+          "Trending Topics"
+        ],
+        "operationId": "GetTrendingTopics",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrendingTopics"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trending/{country}": {
+      "get": {
+        "tags": [
+          "Trending Topics"
+        ],
+        "operationId": "GetTrendingTopicsByCountry",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "maxLength": 2,
+              "minLength": 2,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrendingTopics"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ImageObject": {
+        "type": "object",
+        "properties": {
+          "additionalData": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "webSearchUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "alternateName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "bingId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageObject"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "datePublished": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "provider": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Thing"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "thumbnailUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "video": {
+            "$ref": "#/components/schemas/VideoObject"
+          },
+          "contentUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "height": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "readOnly": true
+          },
+          "width": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "readOnly": true
+          },
+          "thumbnail": {
+            "$ref": "#/components/schemas/ImageObject"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewsTopic": {
+        "type": "object",
+        "properties": {
+          "additionalData": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "webSearchUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "alternateName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "bingId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageObject"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "isBreakingNews": {
+            "type": "boolean",
+            "nullable": true,
+            "readOnly": true
+          },
+          "newsSearchUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "query": {
+            "$ref": "#/components/schemas/Query"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "Query": {
+        "type": "object",
+        "properties": {
+          "additionalData": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          },
+          "displayText": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "searchLink": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "thumbnail": {
+            "$ref": "#/components/schemas/ImageObject"
+          },
+          "webSearchUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Thing": {
+        "type": "object",
+        "properties": {
+          "additionalData": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "webSearchUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "alternateName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "bingId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageObject"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TrendingTopics": {
+        "type": "object",
+        "properties": {
+          "additionalData": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "webSearchUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "followUpQueries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Query"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NewsTopic"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VideoObject": {
+        "type": "object",
+        "properties": {
+          "additionalData": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "webSearchUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "alternateName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "bingId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageObject"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "datePublished": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "provider": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Thing"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "thumbnailUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "video": {
+            "$ref": "#/components/schemas/VideoObject"
+          },
+          "contentUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "height": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "readOnly": true
+          },
+          "width": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "readOnly": true
+          },
+          "allowHttpsEmbed": {
+            "type": "boolean",
+            "nullable": true,
+            "readOnly": true
+          },
+          "allowMobileEmbed": {
+            "type": "boolean",
+            "nullable": true,
+            "readOnly": true
+          },
+          "embedHtml": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "isSuperfresh": {
+            "type": "boolean",
+            "nullable": true,
+            "readOnly": true
+          },
+          "motionThumbnailId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "motionThumbnailUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "thumbnail": {
+            "$ref": "#/components/schemas/ImageObject"
+          },
+          "videoId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "viewCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

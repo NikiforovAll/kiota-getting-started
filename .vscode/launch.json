@@ -1,0 +1,82 @@
+{
+    "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "App + App.Client",
+            "configurations": [
+                "App",
+                "App.Client"
+            ]
+        }
+    ],
+    "configurations": [
+        {
+            "name": "App.Client.Cli",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/App.Client.Cli/bin/Debug/net8.0/App.Client.Cli.dll",
+            "args": [
+                "my",
+                "trending",
+                "get",
+                "--output",
+                "TABLE"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "integratedTerminal"
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        },
+        {
+            "name": "App",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/App/bin/Debug/net8.0/App.dll",
+            "console": "externalTerminal",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "https://localhost:7298;http://localhost:5103"
+            }
+        },
+        {
+            "name": "App.Client",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/App.Client/bin/Debug/net8.0/App.dll",
+            "console": "externalTerminal",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "https://localhost:7299;http://localhost:5102"
+            }
+        },
+        {
+            "name": "App.AppHost",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/App.AppHost/bin/Debug/net8.0/App.AppHost.dll",
+            "console": "externalTerminal",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "DOTNET_ENVIRONMENT": "Development",
+                "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:16036",
+                "ASPNETCORE_URLS": "http://localhost:15066"
+            }
+        }
+    ]
+}

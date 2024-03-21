@@ -1,0 +1,8 @@
+{
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "App_HostAddress": "http://localhost:5103",
+            "AppClient_HostAddress": "http://localhost:5102"
+        }
+    }
+}

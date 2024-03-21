@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <OpenApiDocumentsDirectory>$(MSBuildProjectDirectory)/../App.Sdk/OpenApi</OpenApiDocumentsDirectory>
+    <OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
+    <OpenApiGenerateDocumentsOnBuild>true</OpenApiGenerateDocumentsOnBuild>
+    <UserSecretsId>d1b02e5c-e92f-45f3-bd59-4cde6a751234</UserSecretsId>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\App.ServiceDefaults\App.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\NewsSearch.Sdk\NewsSearch.Sdk.csproj" />
+  </ItemGroup>
+
+  <Target Name="OpenAPI" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
+      <Exec Command="kiota generate -l CSharp --output ../App.Sdk --namespace-name App.Sdk --class-name AppApiClient --exclude-backward-compatible --openapi ../App.Sdk/OpenApi/App.json" WorkingDirectory="$(ProjectDir)" />
+  </Target>
+
+</Project>

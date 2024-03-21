@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Kiota.Abstractions" />
+		<PackageReference Include="Microsoft.Kiota.Authentication.Azure" />
+		<PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" />
+		<PackageReference Include="Microsoft.Kiota.Serialization.Form" />
+		<PackageReference Include="Microsoft.Kiota.Serialization.Json" />
+		<PackageReference Include="Microsoft.Kiota.Serialization.Multipart" />
+		<PackageReference Include="Microsoft.Kiota.Serialization.Text" />
+	</ItemGroup>
+</Project>
