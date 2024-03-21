@@ -32,6 +32,16 @@ In this demo, we have an application (`App.Client`) that calls our application's
 | `App.AppHost` | Aspire Host |
 | `App.ServiceDefaults` | Reasonable service defaults provided in 'Aspire' paradigm. |
 
+```mermaid
+graph LR
+    App --> NewsSearchSdk["NewsSearch.Sdk"]
+    App --> AppServiceDefaults["App.ServiceDefaults"]
+    AppClient --> AppSdk["App.Sdk"]
+    AppClient["App.Client"] --> AppServiceDefaults
+    AppAppHost["App.AppHost"] --> App
+    AppAppHost --> AppClient
+```
+
 ## Getting Started
 
 Configure `App` and run Aspire AppHost.
