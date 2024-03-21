@@ -1,4 +1,4 @@
-# Kiota + Aspire + .NET 8 Demo [![.NET](https://github.com/NikiforovAll/kiota-getting-started/actions/workflows/dotnet.yml/badge.svg)](https://github.com/NikiforovAll/kiota-getting-started/actions/workflows/dotnet.yml)
+# Kiota + Aspire [![.NET](https://github.com/NikiforovAll/kiota-getting-started/actions/workflows/dotnet.yml/badge.svg)](https://github.com/NikiforovAll/kiota-getting-started/actions/workflows/dotnet.yml)
 
 This demo showcases the integration of Kiota, Aspire, and .NET 8! This project demonstrates how these technologies can work together seamlessly.
 
