@@ -1,4 +1,4 @@
-# Kiota + Aspire + .NET 8 Demo
+# Kiota + Aspire + .NET 8 Demo [![.NET](https://github.com/NikiforovAll/kiota-getting-started/actions/workflows/dotnet.yml/badge.svg)](https://github.com/NikiforovAll/kiota-getting-started/actions/workflows/dotnet.yml)
 
 This demo showcases the integration of Kiota, Aspire, and .NET 8! This project demonstrates how these technologies can work together seamlessly.
 
@@ -28,7 +28,7 @@ In this demo, we have an application (`App.Client`) that calls our application's
 | `App.Sdk` | Generated OpenAPI HTTP Client by Kiota |
 | `App.Client` | Invokes `App` via App.Sdk |
 | `App.Client.Sdk` | Generated OpenAPI HTTP Client by Kiota |
-| `App.Client.Cli` | Generated CLI Client by Kiota. Convention based commands based on App.Client OpenAPI specification|
+| `App.Client.Cli` | Generated CLI Client by Kiota. Convention-based commands based on App.Client OpenAPI specification|
 | `App.AppHost` | Aspire Host |
 | `App.ServiceDefaults` | Reasonable service defaults provided in 'Aspire' paradigm. |
 
