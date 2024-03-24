@@ -48,7 +48,19 @@ static void RegisterNewsSearchApiClient(IServiceCollection services)
         };
 
         return new NewsSearchApiClient(requestAdapter);
-    }).AddStandardResilienceHandler().Configure(cfg =>
+    })
+    .ConfigurePrimaryHttpMessageHandler(_ =>
+    {
+        IList<DelegatingHandler> defaultHandlers = KiotaClientFactory.CreateDefaultHandlers();
+        HttpMessageHandler defaultHttpMessageHandler = KiotaClientFactory.GetDefaultHttpMessageHandler();
+
+        // Or, if your generated client is long-lived, respond to DNS updates using:
+        // HttpMessageHandler defaultHttpMessageHandler = new SocketsHttpHandler();
+
+        return KiotaClientFactory.ChainHandlersCollectionAndGetFirstLink(
+            defaultHttpMessageHandler, [.. defaultHandlers])!;
+    })
+    .AddStandardResilienceHandler().Configure(cfg =>
     {
         cfg.Retry.MaxRetryAttempts = 3;
         cfg.Retry.UseJitter = true;

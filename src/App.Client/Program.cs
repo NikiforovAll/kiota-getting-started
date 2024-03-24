@@ -43,5 +43,12 @@ static void RegisterAppApiClient(IServiceCollection services)
         };
 
         return new AppApiClient(requestAdapter);
+    }).ConfigurePrimaryHttpMessageHandler(_ =>
+    {
+        IList<DelegatingHandler> defaultHandlers = KiotaClientFactory.CreateDefaultHandlers();
+        HttpMessageHandler defaultHttpMessageHandler = KiotaClientFactory.GetDefaultHttpMessageHandler();
+
+        return KiotaClientFactory.ChainHandlersCollectionAndGetFirstLink(
+            defaultHttpMessageHandler, [.. defaultHandlers])!;
     });
 }
